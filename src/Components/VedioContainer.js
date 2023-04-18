@@ -15,7 +15,7 @@ export const VedioContainer = () => {
     };
     getdata();
   }, []);
-  const k = vedio.length;
+  const k = vedio.length||0;
   let x = Math.floor(Math.random() * k + 1);
 
   return (
