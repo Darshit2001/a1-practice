@@ -17,7 +17,7 @@ const Head = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchCache[searchQuery]) {
-        setSearchQuery(searchCache[searchQuery]);
+        setSuggestion(searchCache[searchQuery]);
       } else {
         getSearchSuggestion();
       }
@@ -37,11 +37,13 @@ const Head = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+
+  // Cashing is being used here to avoid unnecessary API Call's it store the the data of recent API's call ,work like a cache memory by Redux.
   const getSearchSuggestion = async () => {
-    console.log(searchQuery);
+    
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const jsondata = await data.json();
-    //console.log(jsondata[1]);
+    
     setSuggestion(jsondata[1]);
     Dispatch(
       cacheResults({

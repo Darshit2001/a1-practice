@@ -11,7 +11,7 @@ export const VedioContainer = () => {
       const datafetched = await fetch(YOUTUBE_VIDEO_API);
       const data = await datafetched.json();
       setvedio(data.items);
-      //console.log(vedio);
+      
     };
     getdata();
   }, []);
@@ -23,7 +23,7 @@ export const VedioContainer = () => {
       <div className="flex flex-wrap">
         {vedio[x] && <AddVediocard info={vedio[x]} />}
         {vedio.map((vedio) => (
-          <Link to={"/watch?v=" + vedio.id}>
+          <Link to={"/watch?v=" + vedio.id+'&title='+vedio.snippet.title+'&channel='+vedio.snippet.channelTitle}>
             <VedioCard key={vedio.key} info={vedio} />
           </Link>
         ))}
